@@ -20,7 +20,7 @@ class CastDialog(QDialog):
         movieData = MovieData()
         s_result = movieData.get_person_data(person_id)
 
-        self.cast.leName.setText(s_result['name'])
+        self.cast.labelName.setText(s_result['name'])
 
         try:
             self.cast.leDeath.setText(s_result['death date'])
@@ -33,8 +33,15 @@ class CastDialog(QDialog):
             print("Actor data not found")
 
         try:
-            # ToDo
-            print(s_result['headshot'])
+            self.cast.labelURL.setOpenExternalLinks(True)
+            urlHead = """<html><head/><body><p><a href=\""""
+            urlTail = """"><span style=\\" text-decoration: underline; color:#0000ff;\\">Link to Photo</span></a></p></body></html>"""
+            url = s_result['headshot']
+
+            stringUrl = urlHead.replace("\n", "") + url.replace("\n", "") + urlTail.replace("\n", "")
+
+            self.cast.labelURL.setText(stringUrl)
+
         except KeyError:
             pass
 
