@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>500</height>
+    <width>715</width>
+    <height>543</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Cast Information</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>film.ico</normaloff>film.ico</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
@@ -28,15 +32,46 @@
      <property name="labelAlignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="leName"/>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="labelName">
+         <property name="font">
+          <font>
+           <family>DejaVu Sans</family>
+           <pointsize>14</pointsize>
+           <italic>true</italic>
+          </font>
+         </property>
+         <property name="text">
+          <string>Actor Name</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Minimum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelPhoto">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label">
@@ -90,7 +125,6 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>leName</tabstop>
   <tabstop>leBirth</tabstop>
   <tabstop>leDeath</tabstop>
  </tabstops>

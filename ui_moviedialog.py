@@ -11,8 +11,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MovieDialog(object):
     def setupUi(self, MovieDialog):
         MovieDialog.setObjectName("MovieDialog")
-        MovieDialog.resize(640, 520)
+        MovieDialog.resize(708, 563)
         MovieDialog.setMinimumSize(QtCore.QSize(550, 424))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("film.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MovieDialog.setWindowIcon(icon)
         self.verticalLayout = QtWidgets.QVBoxLayout(MovieDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.formLayout = QtWidgets.QFormLayout()

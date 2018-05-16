@@ -1,5 +1,7 @@
 from PyQt5.QtWidgets import QDialog, QApplication
 from PyQt5 import QtCore
+from PyQt5.QtGui import QIcon, QPixmap, QImage
+import urllib
 from ui_castdialog import Ui_CastDialog
 from MovieData import MovieData
 
@@ -33,14 +35,11 @@ class CastDialog(QDialog):
             print("Actor data not found")
 
         try:
-            self.cast.labelURL.setOpenExternalLinks(True)
-            urlHead = """<html><head/><body><p><a href=\""""
-            urlTail = """"><span style=\\" text-decoration: underline; color:#0000ff;\\">Link to Photo</span></a></p></body></html>"""
-            url = s_result['headshot']
-
-            stringUrl = urlHead.replace("\n", "") + url.replace("\n", "") + urlTail.replace("\n", "")
-
-            self.cast.labelURL.setText(stringUrl)
+            url = str(s_result['headshot'])
+            img = QImage()
+            data = urllib.request.urlopen(url).read()
+            img.loadFromData(data)
+            self.cast.labelPhoto.setPixmap(QPixmap(img).scaledToWidth(100))
 
         except KeyError:
             pass

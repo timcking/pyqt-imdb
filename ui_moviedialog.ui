@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>685</width>
-    <height>534</height>
+    <width>708</width>
+    <height>563</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,6 +18,10 @@
   </property>
   <property name="windowTitle">
    <string>IMDB Browser</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>film.ico</normaloff>film.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
