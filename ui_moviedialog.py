@@ -11,8 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MovieDialog(object):
     def setupUi(self, MovieDialog):
         MovieDialog.setObjectName("MovieDialog")
-        MovieDialog.resize(708, 563)
-        MovieDialog.setMinimumSize(QtCore.QSize(550, 424))
+        MovieDialog.setEnabled(True)
+        MovieDialog.resize(701, 543)
+        MovieDialog.setMinimumSize(QtCore.QSize(600, 400))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("film.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MovieDialog.setWindowIcon(icon)
@@ -43,6 +44,11 @@ class Ui_MovieDialog(object):
         self.label_4.setObjectName("label_4")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_4)
         self.listCast = QtWidgets.QListWidget(MovieDialog)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(1)
+        sizePolicy.setHeightForWidth(self.listCast.sizePolicy().hasHeightForWidth())
+        self.listCast.setSizePolicy(sizePolicy)
         self.listCast.setObjectName("listCast")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.listCast)
         self.label_5 = QtWidgets.QLabel(MovieDialog)

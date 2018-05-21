@@ -6,6 +6,8 @@
 # Packages
 *.egg
 *.egg-info
+*.wpu
+*.spec
 dist
 build
 eggs

@@ -3,24 +3,51 @@ from PyQt5 import QtCore
 from PyQt5.QtGui import QIcon, QPixmap, QImage
 import urllib
 from ui_castdialog import Ui_CastDialog
+from TriviaApp import TriviaDialog
 from MovieData import MovieData
 
 class CastDialog(QDialog):
+    m_person_id = None
+    # ToDo, move movieData for class scope
+    movieData = MovieData()
+
     def __init__(self, person_id):
         super(CastDialog, self).__init__()
 
         # Set up the user interface from Designer.
         self.cast = Ui_CastDialog()
+        self.resize(800, 625)
+        self.setMinimumSize(QtCore.QSize(600, 400))
         self.cast.setupUi(self)
 
         # Connect up the buttons and widgets
-        self.cast.buttonBox.rejected.connect(self.reject)
+        self.cast.buttonClose.clicked.connect(self.onCloseClick)
+        self.cast.buttonTrivia.clicked.connect(self.onTriviaClick)
 
-        self.getActorInfo(person_id)
+        self.m_person_id = person_id
+        self.getActorInfo()
+        self.getMovieInfo()
 
-    def getActorInfo(self, person_id):
-        movieData = MovieData()
-        s_result = movieData.get_person_data(person_id)
+        QApplication.setOverrideCursor(QtCore.Qt.ArrowCursor)
+
+    def getMovieInfo(self):
+        person = self.movieData.get_person_data(self.m_person_id)
+        s_result = person.get_titlesRefs()
+
+        count = 0
+        try:
+            for item in s_result:
+                # The first movie is always 1939, so ignore first
+                # ToDo, better way to do this
+                if count > 0:
+                    self.cast.listMovies.addItem(item)
+                count += 1
+
+        except KeyError:
+            pass
+
+    def getActorInfo(self):
+        s_result = self.movieData.get_person_data(self.m_person_id)
 
         self.cast.labelName.setText(s_result['name'])
 
@@ -32,7 +59,7 @@ class CastDialog(QDialog):
         try:
             self.cast.leBirth.setText('%s, %s' % (s_result['birth date'], s_result['birth info']['birth place']))
         except KeyError:
-            print("Actor data not found")
+            pass
 
         try:
             url = str(s_result['headshot'])
@@ -44,13 +71,19 @@ class CastDialog(QDialog):
         except KeyError:
             pass
 
-        try:
-            for item in s_result['trivia']:
-                self.cast.listTrivia.addItem(item)
-        except KeyError:
-            pass
+        #try:
+            #for item in s_result['trivia']:
+                #self.cast.listTrivia.addItem(item)
+        #except KeyError:
+            #pass
 
-        QApplication.setOverrideCursor(QtCore.Qt.ArrowCursor)
+    def onTriviaClick(self):
+        QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
+        self.triv = TriviaDialog(self.m_person_id)
+        self.triv.exec_()
+
+    def onCloseClick(self):
+        self.close()
 
 if __name__ == '__main__':
     import sys

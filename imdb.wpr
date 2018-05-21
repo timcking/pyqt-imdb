@@ -16,8 +16,10 @@ console.toolbox = [{'autosave': False,
 proj.file-list = [loc('CastApp.py'),
                   loc('MovieBrowserApp.py'),
                   loc('MovieData.py'),
+                  loc('TriviaApp.py'),
                   loc('ui_castdialog.py'),
-                  loc('ui_moviedialog.py')]
+                  loc('ui_moviedialog.py'),
+                  loc('ui_triviadialog.py')]
 proj.file-type = 'shared'
 proj.launch-config = {loc('get-movie.py'): ('project',
         (u'Casablanca',

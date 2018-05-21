@@ -13,6 +13,8 @@ class MovieDialog(QDialog):
 
         # Set up the user interface from Designer.
         self.ui = Ui_MovieDialog()
+        self.resize(800, 625)
+        self.setMinimumSize(QtCore.QSize(600, 400))
         self.ui.setupUi(self)
 
         # Connect up the buttons and widgets
@@ -76,7 +78,7 @@ class MovieDialog(QDialog):
             self.ui.tePlot.setPlainText(str(s_result['plot outline']))
             self.ui.leRuntime.setText(str(s_result['runtimes'][0]))
         except KeyError:
-            print("Movie data not found")
+            pass
 
         QApplication.setOverrideCursor(QtCore.Qt.ArrowCursor)
 
