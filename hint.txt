@@ -1,0 +1,15 @@
+>>>> b = x.get_person(1459663)
+>>>> b.get_titlesRefs()
+
+Ok, get_titlesRefs is (mostly) an internal method,
+and only returns links to titles as found in
+the texts (biographies, plot summaries and so on).
+
+To get the other information, the objects instances
+of the Movie class work like python dictionaries.
+You can get a list of available information with:
+  b.keys()
+
+After that, you can do things like:
+  b.get('actor')
+  b['visual effects']
