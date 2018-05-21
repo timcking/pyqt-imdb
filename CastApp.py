@@ -8,7 +8,6 @@ from MovieData import MovieData
 
 class CastDialog(QDialog):
     m_person_id = None
-    # ToDo, move movieData for class scope
     movieData = MovieData()
 
     def __init__(self, person_id):

@@ -7,6 +7,7 @@ from MovieData import MovieData
 class MovieDialog(QDialog):
     dictMovie = {}
     dictCast = {}
+    movieData = MovieData()
 
     def __init__(self):
         super(MovieDialog, self).__init__()
@@ -25,8 +26,7 @@ class MovieDialog(QDialog):
         self.ui.listCast.clicked.connect(self.onCastClick)
 
     def fillMovieList(self, title):
-        movieData = MovieData()
-        s_result = movieData.search_movie_data(title)
+        s_result = self.movieData.search_movie_data(title)
 
         index_count = 0
         for item in s_result:
@@ -56,13 +56,12 @@ class MovieDialog(QDialog):
         QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
 
         self.ui.listCast.clear()
-        movieData = MovieData()
 
         cur_row = self.ui.listMovie.currentRow()
         movieTitle = (self.ui.listMovie.currentItem().text())
         movie_id = self.dictMovie[cur_row]
 
-        s_result = movieData.get_movie_data(movie_id)
+        s_result = self.movieData.get_movie_data(movie_id)
 
         try:
             index_count = 0
