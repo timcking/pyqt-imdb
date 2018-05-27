@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_CastDialog(object):
     def setupUi(self, CastDialog):
         CastDialog.setObjectName("CastDialog")
-        CastDialog.resize(714, 533)
+        CastDialog.resize(677, 512)
         CastDialog.setMinimumSize(QtCore.QSize(600, 400))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("film.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)

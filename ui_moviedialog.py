@@ -12,7 +12,7 @@ class Ui_MovieDialog(object):
     def setupUi(self, MovieDialog):
         MovieDialog.setObjectName("MovieDialog")
         MovieDialog.setEnabled(True)
-        MovieDialog.resize(701, 543)
+        MovieDialog.resize(709, 494)
         MovieDialog.setMinimumSize(QtCore.QSize(600, 400))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("film.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)

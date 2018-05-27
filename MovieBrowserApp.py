@@ -9,7 +9,7 @@ class MovieDialog(QDialog):
     dictCast = {}
     movieData = MovieData()
 
-    def __init__(self):
+    def __init__(self, *positional_parameters, **keyword_parameters):
         super(MovieDialog, self).__init__()
 
         # Set up the user interface from Designer.
@@ -25,6 +25,9 @@ class MovieDialog(QDialog):
         self.ui.listMovie.clicked.connect(self.onMovieClick)
         self.ui.listCast.clicked.connect(self.onCastClick)
 
+        if ('optional' in keyword_parameters):
+            self.fillMovieList(keyword_parameters['optional'])
+        
     def fillMovieList(self, title):
         s_result = self.movieData.search_movie_data(title)
 
@@ -49,7 +52,7 @@ class MovieDialog(QDialog):
 
         QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
 
-        self.cast = CastDialog(person_id)
+        self.cast = CastDialog(self, person_id)
         self.cast.exec_()
 
     def onMovieClick(self):
@@ -98,5 +101,6 @@ if __name__ == '__main__':
     import sys
 
     app = QApplication(sys.argv)
+    # dialog = MovieDialog(optional="Casablanca")
     dialog = MovieDialog()
     sys.exit(dialog.exec_())

@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_TriviaDialog(object):
     def setupUi(self, TriviaDialog):
         TriviaDialog.setObjectName("TriviaDialog")
-        TriviaDialog.resize(708, 551)
+        TriviaDialog.resize(650, 497)
         self.verticalLayout = QtWidgets.QVBoxLayout(TriviaDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.labelName = QtWidgets.QLabel(TriviaDialog)

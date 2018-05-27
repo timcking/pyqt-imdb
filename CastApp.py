@@ -5,13 +5,15 @@ import urllib
 from ui_castdialog import Ui_CastDialog
 from TriviaApp import TriviaDialog
 from MovieData import MovieData
+# from MovieBrowserApp import MovieDialog
 
 class CastDialog(QDialog):
     m_person_id = None
+    m_parent = None
     movieData = MovieData()
 
-    def __init__(self, person_id):
-        super(CastDialog, self).__init__()
+    def __init__(self, parent, person_id):
+        super(CastDialog, self).__init__(parent)
 
         # Set up the user interface from Designer.
         self.cast = Ui_CastDialog()
@@ -22,8 +24,12 @@ class CastDialog(QDialog):
         # Connect up the buttons and widgets
         self.cast.buttonClose.clicked.connect(self.onCloseClick)
         self.cast.buttonTrivia.clicked.connect(self.onTriviaClick)
+        self.cast.listMovies.clicked.connect(self.onMovieClick)
 
         self.m_person_id = person_id
+        # ToDo, use m_parent to call MovieDialog
+        self.m_parent = parent
+
         self.getActorInfo()
         self.getMovieInfo()
 
@@ -32,6 +38,7 @@ class CastDialog(QDialog):
     def getMovieInfo(self):
         person = self.movieData.get_person_data(self.m_person_id)
         s_result = person.get_titlesRefs()
+        tk = person.get
 
         count = 0
         try:
@@ -70,11 +77,19 @@ class CastDialog(QDialog):
         except KeyError:
             pass
 
-        #try:
-            #for item in s_result['trivia']:
-                #self.cast.listTrivia.addItem(item)
-        #except KeyError:
-            #pass
+    def onMovieClick(self):
+        QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
+
+        cur_row = self.cast.listMovies.currentRow()
+        movieTitle = (self.cast.listMovies.currentItem().text())
+        print(movieTitle)
+
+
+        self.m_parent.clearText()
+        self.m_parent.fillMovieList(movieTitle)
+
+        QApplication.setOverrideCursor(QtCore.Qt.ArrowCursor)
+        self.close()
 
     def onTriviaClick(self):
         QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
