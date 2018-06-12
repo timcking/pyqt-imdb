@@ -49,6 +49,7 @@ class MovieDialog(QDialog):
         cur_row = self.ui.listCast.currentRow()
         personName = (self.ui.listCast.currentItem().text())
         person_id = self.dictCast[cur_row]
+        print(person_id)
 
         QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
 

@@ -27,7 +27,7 @@ class CastDialog(QDialog):
         self.cast.listMovies.clicked.connect(self.onMovieClick)
 
         self.m_person_id = person_id
-        # ToDo, use m_parent to call MovieDialog
+        # Use m_parent to call MovieDialog
         self.m_parent = parent
 
         self.getActorInfo()
@@ -82,9 +82,8 @@ class CastDialog(QDialog):
 
         cur_row = self.cast.listMovies.currentRow()
         movieTitle = (self.cast.listMovies.currentItem().text())
-        print(movieTitle)
 
-
+        # Call methods from the main window (parent) then close
         self.m_parent.clearText()
         self.m_parent.fillMovieList(movieTitle)
 
